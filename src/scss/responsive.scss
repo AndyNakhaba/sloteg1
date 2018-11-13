@@ -1,0 +1,140 @@
+@media (min-width: 320px) {
+	.header .feedback .modal-header .close {
+		right: 0;
+	}
+	.header .feedback .feedblock {
+		transform: translate(0,10%);
+	}
+	.slider {
+		display: none;
+	}
+	.main{
+		.leftblock {
+			flex: auto;
+			width: 100%;
+		}
+		.centerblock {
+			flex: auto;
+			width: 100%;
+			.products .col-12 .productitem:hover {
+				transform: scale(1);
+			}
+		}
+	}
+	.footer .col-12 {
+		text-align: center;
+		& > div, & > ul {
+			text-align: left;
+			display: inline-block;
+		}
+	}
+}
+@media (min-width: 576px) {
+	.header .feedback .modal-header .close {
+		right: -27;
+	}
+	.main {
+		.leftblock {
+			width: 40%;
+		}
+		.centerblock {
+			width: 60%;
+			.products {
+				.col-12 {
+					&:nth-child(2n) {
+						padding-right: 10px;
+					}
+					&:first-child, &:nth-child(2n+1){
+						padding-left: 10px;
+					}
+					&:nth-child(3n) {
+						padding-right: 0;
+					}
+					&:first-child, &:nth-child(3n+1){
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 768px) {
+	.header {
+		&>*:first-child {
+			position: relative;
+		}
+		.logowrap {
+			transform: translate(0, -50%);
+			position: absolute;
+			top: 50%;
+		}
+		.feedback .feedblock {
+			transform: translate(0,50%);
+		}
+	}
+	.main {
+		.leftblock {
+			width: 30%;
+		}
+		.centerblock {
+			width: 70%;
+			.products {
+				.col-12{
+					&:nth-child(3n) {
+						padding-right: 10px;
+					}
+					&:nth-child(3n+1){
+						padding-left: 10px;
+					}
+					&:nth-child(2n) {
+						padding-right: 0;
+					}
+					&:first-child,&:nth-child(2n+1){
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+	.footer {
+		.col-12 .developers {
+			display: flex;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.main {
+		.leftblock {
+			width: 20%;
+			.pricelist {
+				margin-top: 110px;
+			}
+		}
+		.centerblock {
+			width: 80%;
+			.products {
+				.col-12 {
+					&:nth-child(2n) {
+						padding-right: 10px;
+					}
+					&:first-child, &:nth-child(2n+1) {
+						padding-left: 10px;
+					}
+					.productitem:hover {
+						transform: scale(1.11);
+					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.slider {
+		display: block;
+	}
+
+}
+
+
+
+

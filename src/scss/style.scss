@@ -1,0 +1,545 @@
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+$color: #fff;
+$baseFColor: #767676;
+$secondaryColor: #dcdcdc;
+$lastColor: #ccc;
+
+@font-face {
+	font-family: 'open_sanscondensed_light';
+	src: url('/src/fonts/OpenSans-CondLight-webfont.eot');
+	src: url('/src/fonts/OpenSans-CondLight-webfont.eot?#iefix') format('embedded-opentype'),
+				 url('/src/fonts/OpenSans-CondLight-webfont.woff2') format('woff2'),
+				 url('/src/fonts/OpenSans-CondLight-webfont.woff') format('woff'),
+				 url('/src/fonts/OpenSans-CondLight-webfont.ttf') format('truetype'),
+				 url('/src/fonts/OpenSans-CondLight-webfont.svg#open_sanscondensed_light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Font Awesome 5 Free";
+	src: url("/src/fonts/fontawesome-webfont.otf") format("otf")
+}
+//2
+.areaForLoader {
+	background: linear-gradient(90deg, $baseFColor*0.1, $baseFColor*1.6);
+	overflow: hidden;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right:0;
+	bottom:0;
+	z-index: 9999;
+}
+.loader {
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	left: 50%;
+	margin-left: -20px;
+	top: 50%;
+	margin-top: -20px;
+
+	&:before,
+	&:after {
+		content: "";
+		height: 40px;
+		width: 40px;
+		border: 8px solid rgba(255,255,255,.5);
+		border-radius: 10px;
+		position: absolute;
+		top: 0;
+	}
+
+	&:before {
+		animation: animate 2s infinite linear;
+	}
+
+	&:after {
+		animation: animate2 2s infinite linear;
+	}
+}
+@keyframes animate {
+	100% {
+		transform: rotate(180deg) skew(360deg);
+	}
+}
+@keyframes animate2 {
+	100% {
+		transform: rotate(-180deg) skew(-360deg);
+	}
+}
+
+
+html {
+	height: 100%;
+}
+body {
+	background: $color;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	line-height: 1.57;
+	color: $baseFColor;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.page {
+	flex: 1 0 auto;
+}
+.container {
+	margin: auto;
+	position: relative;
+	max-width: 1000px;
+}
+.header, .menutop, .main, .footer {
+	padding: 10px;
+}
+.header {
+	background: $secondaryColor;
+	.col-12 {
+		margin: 10px 0;
+	}
+	.logowrap {
+		a {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+	.row {
+		& > div:last-child {
+			margin-left: auto;
+		}
+	}
+	.phone {
+		text-align: right;
+		span {
+			display: block;
+			font-family: "open_sanscondensed_light", sans-serif;
+			font-size: 40px;
+			line-height: 1.15;
+		}
+	}
+	.feedback {
+		text-align: right;
+		a {
+			color: $baseFColor;
+			font-size: 24px;
+			font-weight: bold;
+			&:hover {
+				border-bottom: 2px dashed $baseFColor;
+				text-decoration: none;
+			}
+		}
+		.feedblock {
+			background: $color;
+			transform: translate(0,50%);
+			max-width: 470px;
+		}
+		.popup-wrapper {
+			background-color: rgba(0,0,0,.7);
+		}
+		.modal-content {
+			border: 0;
+			border-radius: 0;
+		}
+		.modal-header {
+			border: 0;
+			border-radius: 0;
+			padding: 1rem 1rem 5px 1rem;
+			position: relative;
+			text-align: center;
+			h3 {
+				color: $baseFColor*0.7;
+				font-size: 24px;
+				font-weight: bold;
+				margin-top: 10px;
+				width: 100%;
+			}
+			.close {
+				background: $baseFColor;
+				color: $color;
+				font-size: 25px;
+				font-weight: 100;
+				margin: 0;
+				position: absolute;
+				top: -27px;
+				right: -27px;
+				width: 27px;
+				height: 27px;
+				padding: 0;
+				overflow: hidden;
+				opacity: 1;
+				text-indent: -999px;
+				&:before, &:after {
+					background: $color*0.7;
+					@include pseudo;
+					width: 1px;
+					height: 21px;
+					top: 3px;
+					left: 13px;
+					transition: transform 0.3s ease-in;
+				}
+				&:before{
+					transform: rotate(45deg);
+				}
+				&:after {
+					transform: rotate(-45deg);
+				}
+				&:hover {
+					opacity: 1;
+					&:before{
+						transform: rotate(225deg);
+						transition: transform 0.3s ease-in;
+					}
+					&:after {
+						transform: rotate(135deg);
+						transition: transform 0.3s ease-in;
+					}
+				}
+			}
+		}
+		.modal-body {
+			text-align: center;
+			border: 0;
+			.row-form {
+				margin: 0 10% 20px;
+				position: relative;
+				span {
+					display: block;
+					padding-bottom: 2px;
+				}
+				input {
+					border-color: $baseFColor*1.65;
+					border-radius: 1px;
+					background: transparent;
+					position: relative;
+					z-index: 2;
+					&:hover, &:focus {
+						border-color: $baseFColor*1.65;
+						box-shadow: $baseFColor*1.65 0 0 5px 0;
+					}
+				}
+				textarea {
+					@extend input;
+				}
+			}
+			.error {
+				color: #dc7f7f;
+				display: none;
+				font-style: italic;
+				margin-bottom: 0;
+				padding: 0 0 7px 15px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				text-align: left;
+				z-index: 1;
+			}
+			.row-required {
+				input {
+					border-color: #ff8383;
+					box-shadow: inset #ff8383 0 0 15px 0;
+				}
+				.error {
+					display: block;
+
+				}
+			}
+			.submit-btn {
+				background: $baseFColor;
+				border: 1px solid $baseFColor*1.1;
+				border-radius: 0;
+				color: $color;
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 10px;
+				text-transform: uppercase;
+				&:hover {
+					//border: 0;
+					box-shadow: $baseFColor*1.1 0 0 5px 0;
+				}
+			}
+		}
+	}
+
+}
+.menutop {
+	background: #777;
+	.navmenu {
+		margin: 0;
+		padding: 15px 0;
+		text-align: center;
+		li {
+			display: inline-block;
+			position: relative;
+			padding: 0 10px;
+		}
+		:before{
+			@include pseudo;
+			top: 0; right: 0; bottom: 0;
+			border-left: 3px solid $color;
+		}
+		:last-child:before{
+			display: none;
+		}
+		a {
+			color: $color;
+			font-size: 30px;
+			line-height: 25px;
+		}
+	}
+}
+.slider {
+	background: #f8f8f8;
+	min-height: 250px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	.carousel-fade {
+		margin: auto;
+		//max-width: 1248px;
+		max-height: 400px;
+		.carousel-item {
+			text-align: center;
+			img {
+
+			}
+		}
+		.carousel-control-prev, .carousel-control-next{
+			text-shadow: $baseFColor 3px 5px 3px;
+		}
+	}
+}
+
+.carousel-fade .carousel-item {
+	opacity: 0;
+	transition-duration: .6s;
+	transition-property: opacity;
+}
+.carousel-fade  .carousel-item.active,
+.carousel-fade  .carousel-item-next.carousel-item-left,
+.carousel-fade  .carousel-item-prev.carousel-item-right {
+	opacity: 1;
+}
+.carousel-fade .active.carousel-item-left,
+.carousel-fade  .active.carousel-item-right {
+	opacity: 0;
+}
+.carousel-fade  .carousel-item-next,
+.carousel-fade .carousel-item-prev,
+.carousel-fade .carousel-item.active,
+.carousel-fade .active.carousel-item-left,
+.carousel-fade  .active.carousel-item-prev {
+	transform: translateX(0);
+	transform: translate3d(0, 0, 0);
+}
+
+.main {
+	.breadcrumbs {
+		margin-bottom: 25px;
+		ul {
+			margin: 0;
+			padding: 0;
+			li {
+				list-style: none;
+				a {
+					color: $baseFColor;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.content {
+		display: flex;
+	}
+	.leftblock {
+		> * {
+			margin-bottom: 1rem;
+		}
+		ul {
+			font-size: 18px;
+			//line-height: 28px;
+			padding: 0;
+			li {
+				list-style: none;
+				a {
+					color: $baseFColor;
+					&:hover {
+						color: #010101;
+					}
+				}
+				ul {
+					//display: none;
+					padding-left: 20px;
+					max-height: 0;
+					overflow: hidden;
+					transition: all 0.6s ease-in;
+					li {
+						list-style: disc;
+						font-size: 14px;
+					}
+				}
+				&:hover > ul {
+					//display: block;
+					max-height: 200px;
+					transition: max-height 0.6s ease-in;
+				}
+			}
+		}
+		.pricelist {
+			color: #444;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			margin-top: 40px;
+			span {
+				display: block;
+			}
+		}
+	}
+	.centerblock {
+		width: auto;
+		.products {
+			.col-12 {
+				//background: $secondaryColor;
+				margin: 0;
+				padding: 0 10px 20px 10px;
+				position: relative;
+				flex-direction: column;
+				.productitem {
+					background: $secondaryColor;
+					padding: 20px;
+					position: relative;
+					height: 100%;
+					transition: all .3s ease-in-out;
+					z-index: 0;
+					&:hover{
+						//transform: scale(1.11);
+						box-shadow: $color 0 0 10px 10px;
+						position: relative;
+						z-index: 2;
+					}
+				}
+			}
+			.prodimg {
+				background: url("/src/img/nophoto.png");
+				height: 209px;
+				width: 100%;
+				max-width: 210px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				margin: 0 auto 13px;
+				position: relative;
+				img {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-right: -50%;
+					transform: translate(-50%, -50%);
+					//height: 100%;
+					//width: 100%;
+				}
+			}
+			.prodtext {
+				font-size: 18px;
+				line-height: 20px;
+				min-height: 80px;
+			}
+			.prodfooter {
+				display: flex;
+				flex: 0 0 auto;
+			}
+			.prodprice {
+				color: #444;
+				font-size: 28px;
+				font-weight: bold;
+				margin-right: auto;
+			}
+			.basket {
+				color: $color;
+				margin: 10px 0 0 auto;
+				width: 32px;
+			}
+		}
+		.pagination {
+			padding: 5px 0 60px;
+			width: 100%;
+			ul {
+				margin:     0;
+				padding:    0;
+				text-align: center;
+				width:      100%;
+				li {
+					list-style: none;
+					display:    inline-block;
+					a {
+						color:       $baseFColor;
+						line-height: 1.4;
+						padding:     5px;
+						display:     block;
+						width:       25px;
+						&:hover, &.active {
+							color:     #444;
+							font-size: 18px;
+						}
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+			}
+		}
+		.blocktext {
+			border-top: 1px solid $baseFColor;
+			margin-bottom: 20px;
+			padding-top: 20px;
+			.row {
+			}
+		}
+	}
+}
+
+
+.footer {
+	background: $baseFColor;
+	color: $color;
+	flex: 0 0 auto;
+	padding: 20px 0;
+	.col-12 {
+		margin: 20px 0;
+	}
+	a {
+		border-bottom: 1px solid $color*0.7;
+		box-shadow:inset $color*0.666 0 -1px 0;
+		color: $color;
+		display: inline-block;
+		line-height: 15px;
+		margin-bottom: 6px;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	.navmenu {
+		margin-bottom: 0;
+		li {
+			list-style: none;
+		}
+	}
+	.developers {
+		.pixelplus {
+			margin: 0 15px 0 auto;
+		}
+		.company {
+			max-width: 180px;
+		}
+
+	}
+
+}
+
